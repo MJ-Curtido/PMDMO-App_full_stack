@@ -1,0 +1,7 @@
+{
+  "name": "PMDMO-App_full_stack",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}

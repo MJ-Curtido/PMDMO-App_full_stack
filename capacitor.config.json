@@ -1,0 +1,6 @@
+{
+	"appId": "io.ionic.starter",
+	"appName": "PMDMO-App_full_stack",
+	"webDir": "www",
+	"bundledWebRuntime": false
+}
