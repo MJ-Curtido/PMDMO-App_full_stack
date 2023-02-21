@@ -1,16 +1,42 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
+import { IniciadoGuardGuard } from './guards/iniciado-guard.guard';
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then( m => m.HomePageModule)
-  },
-  {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'inicio',
     pathMatch: 'full'
   },
+  {
+    path: 'principal',
+    loadChildren: () => import('./pages/principal/principal.module').then( m => m.PrincipalPageModule),
+    canActivate: [IniciadoGuardGuard]
+  },
+  {
+    path: 'inicio',
+    loadChildren: () => import('./pages/inicio/inicio.module').then( m => m.InicioPageModule)
+  },
+  {
+    path: 'registro',
+    loadChildren: () => import('./pages/registro/registro.module').then( m => m.RegistroPageModule)
+  },
+  {
+    path: 'miscursos',
+    loadChildren: () => import('./pages/miscursos/miscursos.module').then( m => m.MiscursosPageModule),
+    canActivate: [IniciadoGuardGuard]
+  },
+  {
+    path: 'comprados',
+    loadChildren: () => import('./pages/comprados/comprados.module').then( m => m.CompradosPageModule),
+    canActivate: [IniciadoGuardGuard]
+  },
+  {
+    path: 'menu-tab',
+    loadChildren: () => import('./pages/menu-tab/menu-tab.module').then( m => m.MenuTabPageModule),
+    canActivate: [IniciadoGuardGuard]
+  },
+
 ];
 
 @NgModule({

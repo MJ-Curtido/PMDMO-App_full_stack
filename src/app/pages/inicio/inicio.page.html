@@ -1,0 +1,29 @@
+<ion-card>
+  <ion-card-header>
+    <ion-card-title>Iniciar Sesion</ion-card-title>
+  </ion-card-header>
+
+  <ion-card-content>
+    <form [formGroup]="miFormulario" novalidate>
+      <ion-item>
+        <ion-label position="floating">Email: </ion-label>
+        <ion-input
+          formControlName="controlEmail"
+          type="text"
+          name="email"
+        ></ion-input>
+      </ion-item>
+      <ion-item>
+        <ion-label position="floating">Contraseña: </ion-label>
+        <ion-input
+          formControlName="controlContrasenya"
+          type="text"
+          name="contrasenya"
+        ></ion-input>
+      </ion-item>
+      <ion-button (click)="comprobarValidacion()">
+        Iniciar Sesión
+      </ion-button>
+    </form>
+  </ion-card-content>
+</ion-card>
