@@ -23,7 +23,8 @@ export class IniciadoGuardGuard implements CanActivate {
     | Promise<boolean | UrlTree>
     | boolean
     | UrlTree {
-    if (this.serv.getIniciado()) {
+      
+    if (this.serv.getToken()) {
       return true;
     }
 

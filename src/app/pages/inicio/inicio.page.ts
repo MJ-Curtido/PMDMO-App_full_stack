@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { InfoUsuarioService } from 'src/app/services/info-usuario.service';
 import { PeticionesService } from 'src/app/services/peticiones.service';
 
 @Component({
@@ -13,7 +15,7 @@ export class InicioPage implements OnInit {
   protected controlEmail!: FormControl;
   protected controlContrasenya!: FormControl;
 
-  constructor(private controlAlerta: AlertController, private serv: PeticionesService) { }
+  constructor(private controlAlerta: AlertController, private peticionesServ: PeticionesService, private infoServ: InfoUsuarioService, private router: Router) { }
 
   ngOnInit() {
     this.controlEmail = new FormControl('', [
@@ -22,7 +24,7 @@ export class InicioPage implements OnInit {
       Validators.email,
     ]);
 
-    this.controlContrasenya = new FormControl(0, [
+    this.controlContrasenya = new FormControl('', [
       Validators.required,
       Validators.minLength(7),
     ]);
@@ -46,7 +48,7 @@ export class InicioPage implements OnInit {
     if (this.miFormulario.invalid) {
       this.controlAlerta
         .create({
-          header: 'Error',
+          header: 'pinga',
           message: txtError,
           buttons: ['Ok'],
         })
@@ -54,10 +56,13 @@ export class InicioPage implements OnInit {
           alerta.present();
         });
     } else {
-      // this.serv.iniciarSesion(this.controlEmail.value, this.controlContrasenya.value).subscribe((res: UsuarioConToken) => {
-      //   console.log(res);
-      // }
-      // );
+      this.peticionesServ.iniciarSesion(this.controlEmail.value, this.controlContrasenya.value).subscribe(
+        (res: UsuarioConToken) => {
+        this.infoServ.setToken(res.token);
+
+        this.router.navigate(['/tabs']);
+      }
+      );
     }
   }
 }

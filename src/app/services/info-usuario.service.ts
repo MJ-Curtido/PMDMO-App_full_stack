@@ -4,17 +4,22 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 export class InfoUsuarioService {
-  private iniciado: Boolean;
-
   constructor() {
-    this.iniciado = false;
   }
 
-  getIniciado() {
-    return this.iniciado;
+  getToken(): String | null  {
+    return localStorage.getItem('token');
   }
 
-  setIniciado(iniciado: Boolean) {
-    this.iniciado = iniciado;
+  setToken(token: string): void {
+    localStorage.setItem('token', token);
   }
+
+  removeToken(): void {
+    localStorage.removeItem('token');
+  }
+
+  // getUsuario() {
+  //   return localStorage.getItem('usuario');
+  // }
 }
