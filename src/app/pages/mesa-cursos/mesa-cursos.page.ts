@@ -6,22 +6,21 @@ import { InfoUsuarioService } from 'src/app/services/info-usuario.service';
 import { PeticionesService } from 'src/app/services/peticiones.service';
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  selector: 'app-mesa-cursos',
+  templateUrl: './mesa-cursos.page.html',
+  styleUrls: ['./mesa-cursos.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class MesaCursosPage implements OnInit {
   protected miFormulario!: FormGroup;
   protected controlNombre!: FormControl;
-  protected controlEmail!: FormControl;
-  protected controlContrasenya!: FormControl;
-  protected controlTelefono!: FormControl;
+  protected controlDesc!: FormControl;
+  protected controlPrecio!: FormControl;
 
   constructor(
     private controlAlerta: AlertController,
     private peticionesServ: PeticionesService,
     private infoServ: InfoUsuarioService,
-    private router: Router
+    private router: Router,
   ) {}
 
   ngOnInit() {
@@ -30,31 +29,21 @@ export class RegistroPage implements OnInit {
       Validators.required,
     ]);
 
-    this.controlEmail = new FormControl('', [
+    this.controlDesc = new FormControl('', [
       Validators.minLength(3),
       Validators.required,
-      Validators.email,
     ]);
 
-    this.controlContrasenya = new FormControl('', [
-      Validators.required,
-      Validators.minLength(7),
-    ]);
-
-    this.controlTelefono = new FormControl('', [
-      Validators.required,
-      Validators.pattern('^\\d{9}$'),
-    ]);
+    this.controlPrecio = new FormControl(0, [Validators.required]);
 
     this.miFormulario = new FormGroup({
       controlNombre: this.controlNombre,
-      controlEmail: this.controlEmail,
-      controlContrasenya: this.controlContrasenya,
-      controlTelefono: this.controlTelefono,
+      controlEmail: this.controlDesc,
+      controlContrasenya: this.controlPrecio,
     });
   }
-  
-  comprobarValidacion() {
+
+  crearCurso() {
     if (this.miFormulario.invalid) {
       this.controlAlerta
         .create({
@@ -66,13 +55,15 @@ export class RegistroPage implements OnInit {
           alerta.present();
         });
     } else {
-      this.peticionesServ.registro(this.controlNombre.value, this.controlEmail.value, this.controlContrasenya.value, this.controlTelefono.value).subscribe(
-        (res: UsuarioConToken) => {
-        this.infoServ.setToken(res.token);
-
-        this.router.navigate(['/menu-tab']);
-      }
-      );
+      this.peticionesServ
+        .crearCurso(
+          this.controlNombre.value,
+          this.controlDesc.value,
+          this.controlPrecio.value,
+        )
+        .subscribe((res: Curso) => {
+          this.router.navigate(['/menu-tab']);
+        });
     }
   }
 }

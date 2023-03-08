@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { InfoUsuarioService } from 'src/app/services/info-usuario.service';
+import { PeticionesService } from 'src/app/services/peticiones.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -7,8 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class MenuLateralComponent implements OnInit {
 
-  constructor() { }
+  constructor(private peticionesServ: PeticionesService, private serv: InfoUsuarioService) { }
 
   ngOnInit() {}
 
+  cerrarSesion() {
+    this.peticionesServ.cerrarSesion().subscribe(
+      (res: any) => {
+        console.log(res);
+        this.serv.removeToken();
+      }
+    );
+  }
 }

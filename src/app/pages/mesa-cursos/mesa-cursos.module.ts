@@ -4,9 +4,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { IonicModule } from '@ionic/angular';
 
-import { RegistroPageRoutingModule } from './registro-routing.module';
+import { MesaCursosPageRoutingModule } from './mesa-cursos-routing.module';
 
-import { RegistroPage } from './registro.page';
+import { MesaCursosPage } from './mesa-cursos.page';
 
 @NgModule({
   imports: [
@@ -14,8 +14,8 @@ import { RegistroPage } from './registro.page';
     FormsModule,
     ReactiveFormsModule,
     IonicModule,
-    RegistroPageRoutingModule
+    MesaCursosPageRoutingModule
   ],
-  declarations: [RegistroPage]
+  declarations: [MesaCursosPage]
 })
-export class RegistroPageModule {}
+export class MesaCursosPageModule {}

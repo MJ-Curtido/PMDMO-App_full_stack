@@ -6,13 +6,13 @@
   </ion-header>
   <ion-content>
     <ion-list>
-      <ion-item>
+      <ion-item routerLink="/menu-tab">
         <ion-icon name="grid-outline"></ion-icon> &nbsp; Inicio
       </ion-item>
-      <ion-item>
+      <ion-item routerLink="/mesa-cursos">
         <ion-icon name="pencil-outline"></ion-icon> &nbsp; Crear
       </ion-item>
-      <ion-item>
+      <ion-item (click)="cerrarSesion()">
         <ion-icon name="log-out-outline"></ion-icon> &nbsp; Cerrar sesión
       </ion-item>
     </ion-list>

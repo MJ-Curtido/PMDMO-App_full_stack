@@ -1,10 +1,15 @@
 <ion-header>
   <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-menu-button color="primary" menu="menuLateral"></ion-menu-button>
-    </ion-buttons>
-    <ion-title>principal</ion-title>
+    <ion-title>Cursos</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content> </ion-content>
+<ion-content>
+  <ion-list>
+    <ion-item *ngFor="let curso of cursos">
+      <ion-title>{{curso.nombre}}</ion-title>
+      <ion-label>{{curso.descripcion}}<br>{{curso.precio}}</ion-label>
+      <ion-button (click)="comprarCurso(curso._id)">Comprar</ion-button>
+    </ion-item>
+  </ion-list>
+</ion-content>

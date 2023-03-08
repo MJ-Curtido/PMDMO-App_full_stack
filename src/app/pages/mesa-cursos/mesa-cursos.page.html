@@ -1,6 +1,7 @@
 <ion-card>
   <ion-card-header>
     <ion-card-title>Registro</ion-card-title>
+    <ion-button routerLink="/miscursos">Mis cursos</ion-button>
   </ion-card-header>
 
   <ion-card-content>
@@ -37,8 +38,8 @@
           name="telefono"
         ></ion-input>
       </ion-item>
-      <ion-button (click)="comprobarValidacion()">
-        Crear cuenta
+      <ion-button (click)="crearCurso()">
+        Crear curso
       </ion-button>
     </form>
   </ion-card-content>

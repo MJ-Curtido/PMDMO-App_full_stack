@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { PeticionesService } from 'src/app/services/peticiones.service';
 
 @Component({
   selector: 'app-comprados',
@@ -6,8 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./comprados.page.scss'],
 })
 export class CompradosPage implements OnInit {
+  cursos: Curso[];
 
-  constructor() { }
+  constructor(private peticionesServ: PeticionesService) {
+    this.cursos = [];
+    this.peticionesServ.obtenerCursosComprados().subscribe((cursos) => {
+      this.cursos = cursos;
+    });
+  }
 
   ngOnInit() {
   }

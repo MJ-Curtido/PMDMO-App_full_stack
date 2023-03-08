@@ -7,7 +7,7 @@ export class InfoUsuarioService {
   constructor() {
   }
 
-  getToken(): String | null  {
+  getToken(): string | null  {
     return localStorage.getItem('token');
   }
 
@@ -18,8 +18,4 @@ export class InfoUsuarioService {
   removeToken(): void {
     localStorage.removeItem('token');
   }
-
-  // getUsuario() {
-  //   return localStorage.getItem('usuario');
-  // }
 }

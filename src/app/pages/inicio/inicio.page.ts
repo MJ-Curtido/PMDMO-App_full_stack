@@ -36,20 +36,11 @@ export class InicioPage implements OnInit {
   }
 
   comprobarValidacion() {
-    let txtError = '';
-
-    if (this.controlEmail.invalid && this.controlContrasenya.invalid)
-      txtError = 'Ambos datos están mal introducidos.';
-    else if (this.controlEmail.invalid)
-      txtError = 'El email no está bien introducido.';
-    else if (this.controlContrasenya.invalid)
-      txtError = 'La contraseña tiene que tener mínimo 7 caracteres.';
-
     if (this.miFormulario.invalid) {
       this.controlAlerta
         .create({
-          header: 'pinga',
-          message: txtError,
+          header: 'Error',
+          message: 'Alguno de los datos no es correcto.',
           buttons: ['Ok'],
         })
         .then((alerta) => {
@@ -60,7 +51,7 @@ export class InicioPage implements OnInit {
         (res: UsuarioConToken) => {
         this.infoServ.setToken(res.token);
 
-        this.router.navigate(['/tabs']);
+        this.router.navigate(['/menu-tab']);
       }
       );
     }

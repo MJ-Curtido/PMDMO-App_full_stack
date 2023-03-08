@@ -36,6 +36,10 @@ const routes: Routes = [
     loadChildren: () => import('./pages/menu-tab/menu-tab.module').then( m => m.MenuTabPageModule),
     canActivate: [IniciadoGuardGuard]
   },
+  {
+    path: 'mesa-cursos',
+    loadChildren: () => import('./pages/mesa-cursos/mesa-cursos.module').then( m => m.MesaCursosPageModule)
+  },
 
 ];
 
